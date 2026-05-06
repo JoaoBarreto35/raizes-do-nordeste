@@ -7,19 +7,11 @@ import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { units } from "../../data/units";
+import { getOrderStatusLabel } from "../../domain/order/orderStatusHelpers";
 
 import styles from "./styles.module.css";
 
-function getStatusLabel(status: string): string {
-  const statusMap: Record<string, string> = {
-    received: "Recebido",
-    preparing: "Em preparo",
-    ready: "Pronto para retirada",
-    finished: "Finalizado",
-  };
 
-  return statusMap[status] ?? status;
-}
 
 export function Tracking() {
   const { state, dispatch } = useOrder();
@@ -61,7 +53,7 @@ export function Tracking() {
               <p>{unit?.name ?? "Unidade selecionada"}</p>
             </div>
 
-            <Badge variant="primary">{getStatusLabel(order.status)}</Badge>
+            <Badge variant="primary">{getOrderStatusLabel(order.status)}</Badge>
           </div>
 
           <OrderStatusTimeline currentStatus={order.status} />
