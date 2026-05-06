@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import { AppLayout } from "../components/layout/AppLayout";
 import { AdminDashboard } from "../pages/AdminDashboard";
 import { Cart } from "../pages/Cart";
 import { ChooseChannel } from "../pages/ChooseChannel";
@@ -16,20 +17,22 @@ import { Tracking } from "../pages/Tracking";
 
 export function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/canal" element={<ChooseChannel />} />
-      <Route path="/unidades" element={<ChooseUnit />} />
-      <Route path="/app/cardapio" element={<CustomerMenu />} />
-      <Route path="/app/carrinho" element={<Cart />} />
-      <Route path="/app/identificacao" element={<Identification />} />
-      <Route path="/app/pagamento" element={<Payment />} />
-      <Route path="/app/confirmacao" element={<Confirmation />} />
-      <Route path="/app/status" element={<Tracking />} />
-      <Route path="/totem" element={<Kiosk />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-      <Route path="/privacidade" element={<Privacy />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <AppLayout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/canal" element={<ChooseChannel />} />
+        <Route path="/unidades" element={<ChooseUnit />} />
+        <Route path="/app/cardapio" element={<CustomerMenu />} />
+        <Route path="/app/carrinho" element={<Cart />} />
+        <Route path="/app/identificacao" element={<Identification />} />
+        <Route path="/app/pagamento" element={<Payment />} />
+        <Route path="/app/confirmacao" element={<Confirmation />} />
+        <Route path="/app/status" element={<Tracking />} />
+        <Route path="/totem" element={<Kiosk />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/privacidade" element={<Privacy />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AppLayout>
   );
 }

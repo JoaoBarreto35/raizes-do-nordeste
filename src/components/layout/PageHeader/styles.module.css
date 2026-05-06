@@ -1,0 +1,55 @@
+.header {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.content {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.titleRow {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.titleRow h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.titleRow p {
+  margin: var(--space-2) 0 0;
+  max-width: 720px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.rightSlot {
+  display: flex;
+  align-items: center;
+}
+
+.bottomSlot {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .titleRow {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}

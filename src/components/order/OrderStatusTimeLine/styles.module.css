@@ -1,0 +1,46 @@
+.timeline {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.2rem;
+  border: 3px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+}
+
+.step strong {
+  display: block;
+  color: inherit;
+}
+
+.step p {
+  margin: var(--space-1) 0 0;
+  line-height: 1.5;
+}
+
+.done {
+  color: var(--color-success);
+}
+
+.done .dot {
+  border-color: var(--color-success);
+  background: var(--color-success);
+}
+
+.current strong {
+  color: var(--color-text-primary);
+}
