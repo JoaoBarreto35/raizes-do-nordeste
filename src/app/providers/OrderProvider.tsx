@@ -6,33 +6,13 @@ import {
   useReducer,
 } from "react";
 
-type OrderState = {
-  selectedUnitId: string | null;
-};
-
-type OrderAction = {
-  type: "SELECT_UNIT";
-  payload: {
-    unitId: string;
-  };
-};
-
-const initialState: OrderState = {
-  selectedUnitId: null,
-};
-
-function orderReducer(state: OrderState, action: OrderAction): OrderState {
-  switch (action.type) {
-    case "SELECT_UNIT":
-      return {
-        ...state,
-        selectedUnitId: action.payload.unitId,
-      };
-
-    default:
-      return state;
-  }
-}
+import type { OrderAction } from "../../domain/order/orderActions";
+import {
+  initialOrderState,
+  orderReducer,
+  type OrderState,
+} from "../../domain/order/orderReducer";
+import { initialOrders } from "../../data/initialOrders";
 
 type OrderContextValue = {
   state: OrderState;
@@ -41,12 +21,17 @@ type OrderContextValue = {
 
 const OrderContext = createContext<OrderContextValue | null>(null);
 
+const initialStateWithMockOrders: OrderState = {
+  ...initialOrderState,
+  confirmedOrders: initialOrders,
+};
+
 type OrderProviderProps = {
   children: ReactNode;
 };
 
 export function OrderProvider({ children }: OrderProviderProps) {
-  const [state, dispatch] = useReducer(orderReducer, initialState);
+  const [state, dispatch] = useReducer(orderReducer, initialStateWithMockOrders);
 
   return (
     <OrderContext.Provider value={{ state, dispatch }}>
