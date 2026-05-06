@@ -1,24 +1,54 @@
-import type { PaymentResult } from "../domain/payment/paymentTypes";
+import type { Customer } from "../domain/customer/customerTypes";
+import type {
+  CartItem,
+  Channel,
+  ConfirmedOrder,
+  OrderTotals,
+} from "../domain/order/orderTypes";
+import type { PaymentMethod } from "../domain/payment/paymentTypes";
 
-type SimulatePaymentParams = {
-  shouldApprove: boolean;
+type CreateConfirmedOrderParams = {
+  channel: Exclude<Channel, "admin">;
+  unitId: string;
+  customer: Customer | null;
+  items: CartItem[];
+  couponCode: string | null;
+  paymentMethod: PaymentMethod;
+  totals: OrderTotals;
+  estimatedTimeInMinutes: number;
 };
 
-export async function simulatePayment({
-  shouldApprove,
-}: SimulatePaymentParams): Promise<PaymentResult> {
-  await new Promise((resolve) => window.setTimeout(resolve, 1200));
+function createOrderId(): string {
+  return crypto.randomUUID();
+}
 
-  if (shouldApprove) {
-    return {
-      status: "approved",
-      message: "Pagamento aprovado com sucesso.",
-    };
-  }
+function createOrderNumber(): number {
+  return Math.floor(1000 + Math.random() * 9000);
+}
 
+export function createConfirmedOrder({
+  channel,
+  unitId,
+  customer,
+  items,
+  couponCode,
+  paymentMethod,
+  totals,
+  estimatedTimeInMinutes,
+}: CreateConfirmedOrderParams): ConfirmedOrder {
   return {
-    status: "declined",
-    message:
-      "Pagamento recusado. Verifique os dados ou escolha outra forma de pagamento.",
+    id: createOrderId(),
+    orderNumber: createOrderNumber(),
+    channel,
+    unitId,
+    customer,
+    items,
+    couponCode,
+    paymentMethod,
+    paymentStatus: "approved",
+    status: "received",
+    totals,
+    createdAt: new Date().toISOString(),
+    estimatedTimeInMinutes,
   };
 }
