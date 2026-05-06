@@ -1,3 +1,20 @@
 .page {
   min-height: calc(100vh - 92px);
 }
+
+.quickLinks {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.quickLinks h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.quickLinks div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
