@@ -18,29 +18,35 @@ const navItems = [
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className={styles.shell}>
-      <header className={styles.topbar}>
-        <Link className={styles.brand} to="/">
-          <span className={styles.brandIcon}>🌵</span>
-          <span>Raízes do Nordeste</span>
-        </Link>
+    <>
+      <a className={styles.skipLink} href="#main-content">
+        Pular para o conteúdo
+      </a>
 
-        <nav className={styles.nav} aria-label="Navegação principal">
-          {navItems.map((item) => (
-            <NavLink
-              className={({ isActive }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              key={item.to}
-              to={item.to}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-      </header>
+      <div className={styles.shell}>
+        <header className={styles.topbar}>
+          <Link className={styles.brand} to="/">
+            <span className={styles.brandIcon}>🌵</span>
+            <span>Raízes do Nordeste</span>
+          </Link>
 
-      {children}
-    </div>
+          <nav className={styles.nav} aria-label="Navegação principal">
+            {navItems.map((item) => (
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.active : ""}`
+                }
+                key={item.to}
+                to={item.to}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        </header>
+
+        <div id="main-content">{children}</div>
+      </div>
+    </>
   );
 }

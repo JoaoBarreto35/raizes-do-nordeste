@@ -40,9 +40,9 @@ export function Home() {
           <h2>Experiência simulada</h2>
 
           <p>
-            Este protótipo utiliza dados mockados para demonstrar cardápio por
-            unidade, carrinho, fidelidade, LGPD, pagamento externo simulado e
-            acompanhamento de status.
+            Este protótipo utiliza dados mockados para demonstrar cardápio por unidade,
+            carrinho, fidelidade, LGPD, pagamento externo simulado, acompanhamento de
+            status e painel interno conceitual.
           </p>
         </Card>
       </section>

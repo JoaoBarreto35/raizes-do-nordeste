@@ -1,6 +1,12 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import {
+  adminRoleOptions,
+  canRoleAdvanceOrder,
+  canRoleViewManagementInfo,
+  type AdminRole,
+} from "../../domain/admin/adminTypes";
 import { useOrder } from "../../app/providers/OrderProvider";
 import { PageHeader } from "../../components/layout/PageHeader";
 import { Badge } from "../../components/ui/Badge";
@@ -55,6 +61,7 @@ function getStatusBadgeVariant(status: OrderStatus) {
 export function AdminDashboard() {
   const { state, dispatch } = useOrder();
   const [selectedStatus, setSelectedStatus] = useState<StatusFilter>("all");
+  const [selectedRole, setSelectedRole] = useState<AdminRole>("manager");
 
   const filteredOrders = useMemo(() => {
     if (selectedStatus === "all") {
@@ -78,6 +85,8 @@ export function AdminDashboard() {
     (order) => order.status === "ready"
   ).length;
 
+  const canAdvanceOrder = canRoleAdvanceOrder(selectedRole);
+  const canViewManagementInfo = canRoleViewManagementInfo(selectedRole);
   function handleAdvanceStatus(orderId: string) {
     dispatch({
       type: "ADVANCE_ORDER_STATUS",
@@ -103,32 +112,73 @@ export function AdminDashboard() {
           </Link>
         }
       />
+      <Card className={styles.simulationNotice}>
+        <div>
+          <h2>Ambiente interno simulado</h2>
+          <p>
+            Este painel representa o acesso de funcionários da operação. Como o
+            projeto é um protótipo front-end com dados mockados, não há autenticação
+            real. Em uma aplicação real, esta área seria protegida por login e
+            permissões por perfil.
+          </p>
+        </div>
 
-      <section className={styles.metricsGrid} aria-label="Resumo operacional">
-        <Card className={styles.metricCard}>
-          <span>Total</span>
-          <strong>{totalOrders}</strong>
-          <p>Pedidos registrados</p>
-        </Card>
+        <div className={styles.roleSelector}>
+          <span>Perfil simulado</span>
 
-        <Card className={styles.metricCard}>
-          <span>Recebidos</span>
-          <strong>{receivedCount}</strong>
-          <p>Aguardando preparo</p>
-        </Card>
+          <div className={styles.roleButtons}>
+            {adminRoleOptions.map((role) => (
+              <button
+                className={`${styles.roleButton} ${selectedRole === role.value ? styles.activeRole : ""
+                  }`}
+                key={role.value}
+                onClick={() => setSelectedRole(role.value)}
+                type="button"
+              >
+                <strong>{role.label}</strong>
+                <small>{role.description}</small>
+              </button>
+            ))}
+          </div>
+        </div>
+      </Card>
 
-        <Card className={styles.metricCard}>
-          <span>Em preparo</span>
-          <strong>{preparingCount}</strong>
-          <p>Na cozinha</p>
-        </Card>
 
-        <Card className={styles.metricCard}>
-          <span>Prontos</span>
-          <strong>{readyCount}</strong>
-          <p>Para retirada</p>
+      {canViewManagementInfo ? (
+        <section className={styles.metricsGrid} aria-label="Resumo operacional">
+          <Card className={styles.metricCard}>
+            <span>Total</span>
+            <strong>{totalOrders}</strong>
+            <p>Pedidos registrados</p>
+          </Card>
+
+          <Card className={styles.metricCard}>
+            <span>Recebidos</span>
+            <strong>{receivedCount}</strong>
+            <p>Aguardando preparo</p>
+          </Card>
+
+          <Card className={styles.metricCard}>
+            <span>Em preparo</span>
+            <strong>{preparingCount}</strong>
+            <p>Na cozinha</p>
+          </Card>
+
+          <Card className={styles.metricCard}>
+            <span>Prontos</span>
+            <strong>{readyCount}</strong>
+            <p>Para retirada</p>
+          </Card>
+        </section>
+      ) : (
+        <Card className={styles.limitedRoleCard}>
+          <h2>Visão operacional</h2>
+          <p>
+            O perfil selecionado possui foco na execução dos pedidos. Métricas
+            gerenciais completas ficam disponíveis para Gerente/Admin.
+          </p>
         </Card>
-      </section>
+      )}
 
       <section className={styles.panel}>
         <div className={styles.panelHeader}>
@@ -203,11 +253,13 @@ export function AdminDashboard() {
 
                 <div className={styles.orderActions}>
                   <Button
-                    disabled={order.status === "finished"}
+                    disabled={order.status === "finished" || !canAdvanceOrder}
                     onClick={() => handleAdvanceStatus(order.id)}
-                    variant={order.status === "finished" ? "ghost" : "primary"}
+                    variant={order.status === "finished" || !canAdvanceOrder ? "ghost" : "primary"}
                   >
-                    {getNextOrderStatusLabel(order.status)}
+                    {canAdvanceOrder
+                      ? getNextOrderStatusLabel(order.status)
+                      : "Sem permissão"}
                   </Button>
                 </div>
               </Card>
