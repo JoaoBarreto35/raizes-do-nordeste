@@ -1,3 +1,115 @@
-.page {
-  min-height: 100vh;
+.layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.itemsList {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.cartItem {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.itemMain {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+}
+
+.itemEmoji {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  font-size: 1.8rem;
+}
+
+.itemMain h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.itemMain p {
+  margin: var(--space-1) 0 var(--space-2);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.itemMain strong {
+  display: block;
+}
+
+.itemActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.quantityControl {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+}
+
+.quantityControl span {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.sidebar {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+}
+
+.couponCard {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.couponCard h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.couponMessage,
+.appliedCoupon {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.appliedCoupon {
+  color: var(--color-success);
+}
+
+.couponActions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 112px;
+  }
 }

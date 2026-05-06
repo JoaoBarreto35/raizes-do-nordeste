@@ -1,3 +1,44 @@
-.page {
-  min-height: 100vh;
+.layout {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.formCard,
+.guestCard {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.formCard h2,
+.guestCard h2 {
+  margin: 0;
+}
+
+.formCard p,
+.guestCard p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.guestIcon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  font-size: 2rem;
+}
+
+@media (min-width: 820px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+  }
 }
