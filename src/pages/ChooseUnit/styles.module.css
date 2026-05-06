@@ -1,3 +1,42 @@
-.page {
-  min-height: 100vh;
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.unitCard {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.selected {
+  border-color: var(--color-primary);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.cardHeader h2 {
+  margin: 0;
+}
+
+.cardHeader p,
+.address,
+.time {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.time {
+  font-weight: 800;
+}
+
+@media (min-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

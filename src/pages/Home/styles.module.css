@@ -1,49 +1,76 @@
 .page {
-  min-height: 100vh;
+  min-height: calc(100vh - 92px);
   display: grid;
-  place-items: center;
+  align-items: center;
 }
 
 .hero {
-  width: min(100%, 680px);
-  padding: var(--space-6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.heroContent {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .eyebrow {
-  margin: 0 0 var(--space-2);
+  margin: 0;
   color: var(--color-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2rem, 8vw, 4.5rem);
-  line-height: 1;
+  font-size: clamp(2.6rem, 12vw, 5.6rem);
+  line-height: 0.95;
 }
 
 .description {
-  margin: var(--space-4) 0 var(--space-6);
-  max-width: 560px;
+  max-width: 720px;
+  margin: 0;
   color: var(--color-text-secondary);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.infoCard {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  font-size: 2rem;
+}
+
+.infoCard h2 {
+  margin: 0;
+}
+
+.infoCard p {
+  margin: 0;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
-.primaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0 var(--space-5);
-  border-radius: 999px;
-  background: var(--color-primary);
-  color: #ffffff;
-  font-weight: 700;
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+    align-items: center;
+  }
 }
