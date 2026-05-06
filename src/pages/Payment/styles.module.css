@@ -1,3 +1,130 @@
-.page {
-  min-height: 100vh;
+.layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.mainColumn {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.paymentCard,
+.simulationCard,
+.orderInfo {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.cardTitle h2,
+.simulationCard h2,
+.orderInfo h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.paymentOptions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.paymentOption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.paymentOption strong {
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.paymentOption small {
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.optionIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  font-size: 1.4rem;
+}
+
+.selected {
+  border-color: var(--color-primary);
+  background: #fffaf3;
+  box-shadow: 0 0 0 3px rgba(184, 92, 30, 0.12);
+}
+
+.simulationCard p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.feedback {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  color: var(--color-text-primary) !important;
+  font-weight: 800;
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.orderInfo dl {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.orderInfo div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.orderInfo dt {
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+.orderInfo dd {
+  margin: 0;
+  font-weight: 900;
+  text-align: right;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 112px;
+    display: grid;
+    gap: var(--space-4);
+  }
 }
