@@ -1,12 +1,18 @@
 # Raízes do Nordeste
 
-Projeto desenvolvido para a atividade prática de Projeto Multidisciplinar — Trilha Front-End.
+Projeto desenvolvido para a atividade prática de **Projeto Multidisciplinar — Trilha Front-End**, do curso de Análise e Desenvolvimento de Sistemas.
 
-## Objetivo
+## Sobre o projeto
 
-Aplicação front-end multicanal para simular pedidos de uma rede de lanchonetes, contemplando App Cliente, Totem de Autoatendimento e Painel Web/Admin.
+O projeto simula uma aplicação front-end multicanal para a rede fictícia **Raízes do Nordeste**, uma rede de lanchonetes em expansão.
 
-## Tecnologias
+A solução contempla três canais principais:
+
+- **App Cliente:** fluxo mobile para escolha de unidade, cardápio, carrinho, identificação, LGPD, pagamento simulado e acompanhamento do pedido.
+- **Totem de Autoatendimento:** fluxo presencial simplificado para pedidos rápidos em loja.
+- **Painel Web/Admin:** ambiente interno simulado para acompanhamento e atualização de status dos pedidos.
+
+## Tecnologias utilizadas
 
 - React
 - Vite
@@ -15,26 +21,28 @@ Aplicação front-end multicanal para simular pedidos de uma rede de lanchonetes
 - CSS Modules
 - Mock Data
 
-## Escopo
+## Funcionalidades
 
-A aplicação simula:
+- Seleção de canal de atendimento;
+- Seleção de unidade;
+- Cardápio dinâmico por unidade;
+- Filtro por categoria de produtos;
+- Carrinho com alteração de quantidade e remoção de itens;
+- Cupom promocional simulado;
+- Identificação do cliente ou continuação como visitante;
+- Consentimento LGPD antes do pagamento;
+- Política de privacidade;
+- Pagamento externo simulado com retorno aprovado ou recusado;
+- Confirmação do pedido;
+- Acompanhamento do status;
+- Totem de autoatendimento;
+- Painel interno com filtros e atualização de status;
+- Simulação de perfis internos no painel admin.
 
-- seleção de canal;
-- seleção de unidade;
-- cardápio por unidade;
-- carrinho;
-- identificação do cliente;
-- consentimento LGPD;
-- pagamento externo simulado;
-- confirmação do pedido;
-- acompanhamento de status;
-- painel interno;
-- totem de autoatendimento;
-- política de privacidade.
+## Escopo acadêmico
 
-## Como executar
+Este projeto é um protótipo acadêmico com foco em front-end.
 
-```bash
-npm install
-npm run dev
-```
+A aplicação **não realiza pagamento real**, **não possui banco de dados real** e **não possui autenticação real**. Os dados são mockados e utilizados apenas para demonstrar os fluxos da interface.
+
+O painel `/admin` representa um ambiente interno simulado. Em uma aplicação real, essa área seria protegida por login e permissões de acesso por perfil.
